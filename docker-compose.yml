@@ -1,0 +1,46 @@
+services:
+  rmis_server:
+    container_name: rmis_server
+    build: .
+    volumes:
+      - ./api:/var/www/html/api 
+      - ./config/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    ports:
+      - 8066:80
+    networks:
+      - rmis_pma
+    restart: always
+
+  rmis_db:
+    container_name: rmis_db
+    image: mariadb:10.4.20
+    environment:
+      - MYSQL_ROOT_PASSWORD=kis_pass
+      - MYSQL_DATABASE=kis
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=kis_pass
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - rmis_pma
+    restart: always
+
+  rmis_pma:
+      container_name: rmis_pma
+      image: phpmyadmin:5.2.1-apache
+      restart: always
+      ports:
+        - 8866:80
+      environment:
+        - PMA_ARBITRARY=1
+        - UPLOAD_LIMIT=300M
+        - MYSQL_USERNAME=root
+        - MYSQL_ROOT_PASSWORD=kis_pass
+        - PMA_HOST=rmis_db
+        - PMA_PORT=3306
+        - PMA_USER=root
+        - PMA_PASSWORD=kis_pass
+      networks:
+        - rmis_pma
+networks:
+  rmis_pma:
