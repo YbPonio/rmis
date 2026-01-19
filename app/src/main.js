@@ -1,17 +1,30 @@
-import "./style.css";
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "./router/index.js";
-import axios from "axios";
-import PrimeVue from "primevue/config";
-import Aura from "@primeuix/themes/aura";
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
 
-axios.defaults.baseURL = "http://localhost:8066/api/public/";
+import Aura from '@primeuix/themes/aura';
+import PrimeVue from 'primevue/config';
+import ConfirmationService from 'primevue/confirmationservice';
+import ToastService from 'primevue/toastservice';
+
+import '@/assets/tailwind.css';
+import '@/assets/styles.scss';
+
+import { definePreset } from '@primeuix/themes';
+
 
 const app = createApp(App);
 
-app.use(PrimeVue, {
-  theme: { preset: Aura },
-});
 app.use(router);
-app.mount("#app");
+app.use(PrimeVue, {
+    theme: {
+        preset: Aura,
+        options: {
+            darkModeSelector: '.app-dark'
+        }
+    }
+});
+app.use(ToastService);
+app.use(ConfirmationService);
+
+app.mount('#app');
