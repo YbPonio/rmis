@@ -19,16 +19,12 @@ migrate_sudo:
 migrate:
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan optimize"
 #	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate --database=mysql_apps --path='database/migrations/Apps'"
-#	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate --database=mysql_pos --path='database/migrations/Pos'"
-#	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate --database=mysql_atts --path='database/migrations/Atts'"
-#	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate --database=mysql_hris --path='database/migrations/Hris'"
-#	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate --database=mysql_eis --path='database/migrations/Eis'"
-#	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate --database=mysql_pims --path='database/migrations/Pims'"
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate"
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan db:seed"
 migrate_fresh:
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan optimize"
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate:fresh"
+	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate:fresh --database=mysql_rmis  --path='database/migrations/Rmis'"
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan db:seed"
 seeder: 
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan optimize"
