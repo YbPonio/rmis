@@ -1,6 +1,11 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
+axios.defaults.withXSRFToken = true;
+axios.defaults.baseURL = 'http://localhost:8066/api/public';
 
 import Aura from '@primeuix/themes/aura';
 import PrimeVue from 'primevue/config';
@@ -11,7 +16,6 @@ import '@/assets/tailwind.css';
 import '@/assets/styles.scss';
 
 import { definePreset } from '@primeuix/themes';
-
 
 const app = createApp(App);
 
