@@ -24,15 +24,15 @@ import { ref } from 'vue';
 let fileupload = ref(null);
 let toast = useToast();
 
-function upload() {
-    axios
-        .post('upload', fileupload.value.files[0])
-        .then((response) => {
-            toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
-        })
-        .catch((error) => {
-            toast.add({ severity: 'error', summary: 'Error', detail: 'File Upload Failed', life: 3000 });
-        });
+async function upload() {
+    try {
+        const formData = new FormData();
+        formData.append('file', fileupload.value.files[0]);
+        await axios.post('/document/upload', formData);
+        toast.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded', life: 3000 });
+    } catch (error) {
+        toast.add({ severity: 'error', summary: 'Error', detail: 'File Upload Failed', life: 3000 });
+    }
 }
 
 function onUpload() {

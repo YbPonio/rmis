@@ -15,7 +15,6 @@ import ToastService from 'primevue/toastservice';
 import '@/assets/tailwind.css';
 import '@/assets/styles.scss';
 
-import { definePreset } from '@primeuix/themes';
 
 const app = createApp(App);
 
