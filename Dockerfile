@@ -15,3 +15,4 @@ RUN apt-get install -y sudo
 
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY config/custom-php.ini /usr/local/etc/php/conf.d/custom-php.ini
