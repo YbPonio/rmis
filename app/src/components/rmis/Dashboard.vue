@@ -2,6 +2,7 @@
   <div>
     <h4>RMIS</h4>
     <rmis-data-table />
+    <file-upload-form />
   </div>
 </template>
 

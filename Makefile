@@ -18,8 +18,8 @@ migrate_sudo:
 	sudo docker exec ${SERVER_INSTANCE} sh -c "php api/artisan db:seed"
 migrate:
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan optimize"
-#	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate --database=mysql_apps --path='database/migrations/Apps'"
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate"
+	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan migrate --database=mysql_rmis  --path='database/migrations/Rmis'"
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan db:seed"
 migrate_fresh:
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan optimize"

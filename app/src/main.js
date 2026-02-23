@@ -5,7 +5,7 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 axios.defaults.withXSRFToken = true;
-axios.defaults.baseURL = 'http://localhost:8066/api/public';
+axios.defaults.baseURL = 'https://scaling-journey-pv5xjvjjqrqh6xjp-8066.app.github.dev/api/public';
 
 import Aura from '@primeuix/themes/aura';
 import PrimeVue from 'primevue/config';
@@ -14,7 +14,6 @@ import ToastService from 'primevue/toastservice';
 
 import '@/assets/tailwind.css';
 import '@/assets/styles.scss';
-
 
 const app = createApp(App);
 
