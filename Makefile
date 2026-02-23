@@ -1,8 +1,16 @@
 include .env
+
+rebuild:
+	docker-compose down
+	docker-compose build
+	docker-compose up -d
+	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan config:clear"
+	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan route:clear"
+
 optimize:
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan optimize"
 clear:
-	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan config:clear"optimize:
+	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan config:clear"
 composer_install:
 	docker exec ${SERVER_INSTANCE} sh -c "cd api && composer install"
 migrate_sudo:
