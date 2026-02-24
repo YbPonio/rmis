@@ -1,9 +1,9 @@
 include .env
 
 rebuild:
-	docker-compose down
-	docker-compose build
-	docker-compose up -d
+	docker compose down
+	docker compose build
+	docker compose up -d
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan config:clear"
 	docker exec ${SERVER_INSTANCE} sh -c "php api/artisan route:clear"
 
